@@ -85,7 +85,7 @@ module.exports = {
           if (!services) {
             throw { status: 400, message: "Required field cannot be empty." };
           }
-         const searchTerms = Services.split(",");     
+         const searchTerms = services.split(",");     
           const whereClause = {service:{
             [Op.or]:[]
           }};

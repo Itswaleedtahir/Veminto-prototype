@@ -26,7 +26,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
   });
-
+  Service.associate = (models) => {
+    Service.belongsTo(models.Companies, {
+      as: "company",
+      foreignKey: "companiesId",
+      targetKey: "id",
+    });
+  }
   Service.beforeCreate(async (user) => {
     user.dataValues.createdAt = moment().unix();
     user.dataValues.updatedAt = moment().unix();
