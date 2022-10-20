@@ -85,7 +85,7 @@ module.exports = {
           if (!services) {
             throw { status: 400, message: "Required field cannot be empty." };
           }
-         const searchTerms = Services.split(",");     
+         const searchTerms = services.split(",");     
           const whereClause = {service:{
             [Op.or]:[]
           }};
@@ -98,6 +98,49 @@ module.exports = {
           where:whereClause
            })    
         res.status(200).send(com);
+      } catch (err) {
+        console.log(err);
+            return res
+              .status(err.status || 500)
+              .send(err.message || "Something went wrong...");
+      }
+    },
+    getemployee: async (req, res)=>{
+        try {
+          const { employeeName } = req.body;
+          if (!employeeName) {
+            throw { status: 400, message: "Required field cannot be empty." };
+          }
+          const searchTerms = employeeName.split(" ");     
+          const whereClause = {employeeName:{
+            [Op.or]:[]
+          }};
+        for( let searchTerm of searchTerms  ) {
+            whereClause.employeeName[Op.or].push({
+              [Op.like]: `%${searchTerm}%`
+            })
+        }
+          const com = await Employees.findAll({
+            where:whereClause,
+            include:[{
+              model: Companies,
+              as: "company"
+            }]
+          })
+         //console.log(req.companny.id);
+          // const employee = await employees.findAll({
+
+          //   where:{
+
+          //     fk_company_id: req.company.id
+          //   },
+          //   include: [{
+          //     model: companies ,
+          //     as: "company"
+          //   }
+          // ]
+          // })
+          res.status(200).send({'Employee': com});
       } catch (err) {
         console.log(err);
             return res
