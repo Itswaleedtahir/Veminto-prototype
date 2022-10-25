@@ -10,6 +10,6 @@ router.post('/company/service', web.getsingleService);
 router.get('/service', web.getServices);
 router.post('/company', web.getsingle);
 router.post('/service/:id',auth , web.service );
-router.post('/employee/:id',auth , web.employe );
+router.post('/employee' , web.employe );
 
 module.exports = router;

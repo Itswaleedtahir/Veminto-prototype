@@ -157,5 +157,48 @@ module.exports = {
               .status(err.status || 500)
               .send(err.message || "Something went wrong...");
       } 
-  }
+  },
+  getemployee: async (req,res)=>{
+    try {
+        const { companyName } = req.body;
+        if (!companyName) {
+          throw { status: 400, message: "Required field cannot be empty." };
+        }
+        const searchTerms = companyName.split(" ");     
+        const whereClause = {companyName:{
+          [Op.or]:[]
+        }};
+      for( let searchTerm of searchTerms  ) {
+          whereClause.companyName[Op.or].push({
+            [Op.like]: `%${searchTerm}%`
+          })
+      }
+        const com = await Companies.findAll({
+          where:whereClause,
+          include:[{
+            model: Employees,
+            as: "employees"
+          }]
+        })
+       //console.log(req.companny.id);
+        // const employee = await employees.findAll({
+
+        //   where:{
+
+        //     fk_company_id: req.company.id
+        //   },
+        //   include: [{
+        //     model: companies ,
+        //     as: "company"
+        //   }
+        // ]
+        // })
+        res.status(200).send({'companies': com});
+    } catch (err) {
+      console.log(err);
+          return res
+            .status(err.status || 500)
+            .send(err.message || "Something went wrong...");
+    }
+  },
 }
