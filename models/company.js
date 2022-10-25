@@ -51,15 +51,20 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "fk_company_id",
       targetKey: "id",
     });
+    Company.hasMany(models.Services, {
+      as: "services",
+      foreignKey: "companiesId",
+      targetKey: "id",
+    });
 }
-Company.associate = (models) => {
-  //console.log(`models: ${models}`);
-  Company.hasMany(models.Services, {
-    as: "services",
-    foreignKey: "companiesId",
-    targetKey: "id",
-  });
-}
+// Company.associate = (models) => {
+//   //console.log(`models: ${models}`);
+//   Company.hasMany(models.Services, {
+//     as: "services",
+//     foreignKey: "companiesId",
+//     targetKey: "id",
+//   });
+// }
 
   Company.beforeCreate(async (user) => {
     user.dataValues.createdAt = moment().unix();
