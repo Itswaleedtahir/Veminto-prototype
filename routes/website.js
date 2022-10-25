@@ -6,9 +6,10 @@ const auth = require('../middleware/isComp')
 
 router.post('/website', web.data);
 router.get('/company', web.getCompanies);
-router.post('/company/service', web.getsingleService);
+router.get('/company/service', web.getsingleService);
 router.get('/service', web.getServices);
-router.post('/company', web.getsingle);
+router.get('/company/single', web.getsingle);
+router.get('/employee/single', web.getemployee);
 router.post('/service/:id',auth , web.service );
 router.post('/employee' , web.employe );
 
