@@ -45,7 +45,6 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Company.associate = (models) => {
-    //console.log(`models: ${models}`);
     Company.hasMany(models.Employees, {
       as: "employees",
       foreignKey: "fk_company_id",

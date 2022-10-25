@@ -1,39 +1,42 @@
 "use strict";
 const moment = require("moment");
-
 module.exports = (sequelize, DataTypes) => {
-  const Employee = sequelize.define("employees", {
+  const User = sequelize.define("users", {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      employeeName: {
+      firstName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      designation:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      experience:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      fk_company_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      skills:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      linkedinProfile:{
+      lastName:{
         type: DataTypes.STRING,
         allowNull: false,
       },
       email:{
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      DOB:{
+        type:DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      gender: {
+        type: DataTypes.ENUM("Male", "Female"," Other"),
+        allowNull: false,
+      },
+      company:{
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      jobTitle:{
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      password:{
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -46,20 +49,13 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
   });
-  Employee.associate = (models) => {
-    Employee.belongsTo(models.Companies, {
-      as: "company",
-      foreignKey: "fk_company_id",
-      targetKey: "id",
-    });
-  };
-  Employee.beforeCreate(async (user) => {
+  User.beforeCreate(async (user) => {
     user.dataValues.createdAt = moment().unix();
     user.dataValues.updatedAt = moment().unix();
   });
-  Employee.beforeUpdate(async (user) => {
+  User.beforeUpdate(async (user) => {
     user.dataValues.updatedAt = moment().unix();
   });
 
-  return Employee;
+  return User;
 };
