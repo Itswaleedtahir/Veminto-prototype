@@ -9,7 +9,7 @@ router.get('/company', web.getCompanies);
 router.get('/company/service', web.getsingleService);
 router.get('/service', web.getServices);
 router.get('/company/single', web.getsingle);
-router.get('/employee/single', web.getemployee);
+router.get('/employee/single', web.getemployeee);
 router.post('/service/:id',auth , web.service );
 router.post('/employee' , web.employe );
 

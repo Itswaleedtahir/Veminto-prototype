@@ -1,6 +1,7 @@
 const {Companies, Employees , Services} = require("../models/index")
 const { Sequelize, Op } = require("sequelize");
 module.exports = {
+  //website data api
   data: async (req, res) => {
       console.log(req.body);
       try {
@@ -25,6 +26,7 @@ module.exports = {
       .message(err.message || "Something went wrong...");
       }
   },
+  //getting all companies
   getCompanies: async (req, res) => {
       try {
         const websitess = await Companies.findAll();
@@ -36,6 +38,7 @@ module.exports = {
           .send(error.message || "Something went wrong...");
       }
     },
+    //getting single company
     getsingle: async (req,res)=>{
       try {
           const { companyName } = req.body;
@@ -79,6 +82,7 @@ module.exports = {
               .send(err.message || "Something went wrong...");
       }
     },
+    //getting comapny by service
     getsingleService: async (req,res)=>{
       try {
           const { services } = req.body;
@@ -105,9 +109,11 @@ module.exports = {
               .send(err.message || "Something went wrong...");
       }
     },
-    getemployee: async (req, res)=>{
+    //getting single employee with company details
+    getemployeee: async (req, res)=>{
         try {
           const { employeeName } = req.body;
+          console.log(req.body.employeeName)
           if (!employeeName) {
             throw { status: 400, message: "Required field cannot be empty." };
           }
@@ -148,6 +154,7 @@ module.exports = {
               .send(err.message || "Something went wrong...");
       }
     },
+    //data entring for service
   service: async (req,res)=>{
       try {
           const { service } = req.body;
@@ -167,6 +174,7 @@ module.exports = {
               .send(err.message || "Something went wrong...");
       } 
   },
+  //getting all the services
   getServices: async (req, res) => {
       try {
         const servicess = await Services.findAll();
@@ -178,6 +186,7 @@ module.exports = {
           .send(error.message || "Something went wrong...");
       }
     },
+    //enntring employee data
   employe: async (req,res)=>{
       try {
           const { employeeName, designation, experience, skills, linkedinProfile, email } = req.body;
@@ -201,6 +210,7 @@ module.exports = {
               .send(err.message || "Something went wrong...");
       } 
   },
+  //getting company along with emloyee data
   getemployee: async (req,res)=>{
     try {
         const { companyName } = req.body;
