@@ -15,6 +15,7 @@ module.exports =  {
             [Op.like]: `%${searchTerm}%`
             })
         }
+        
             const rq = { ...whereClause , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result }
             const OrCond = [];
             for (var k in rq){
@@ -37,7 +38,7 @@ module.exports =  {
     //     }
     // buffer.toString('utf8')
 
-        const comp = await CompanyData.findOne({
+        const comp = await CompanyData.findAll({
             where:{
                [Op.or]:[OrCond]
         }
