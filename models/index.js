@@ -8,12 +8,13 @@ const config = require("../config");
 const { camelCase, upperFirst } = require("lodash");
 const db = {};
 
+
 let sequelize = new Sequelize(
-  config.get("db.name"),
-  config.get("db.username"),
-  config.get("db.password"),
+  'vimento',
+ 'admin',
+ 'Vimento123456',
   {
-    host: config.get("db.host"),
+    host: 'vimentomain.cbfte2i14par.eu-west-1.rds.amazonaws.com',
     dialect: "mysql",
   }
 );
