@@ -1,9 +1,11 @@
-const {Users} = require("../models/index")
+const { Users } = require("../models/index")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 
 module.exports = {
+
+  //signUp API................................................................
     signUp: async (req,res)=>{
        try {
         const { firstname,lastname,email,DOB,gender,password } = req.body;
@@ -44,6 +46,7 @@ module.exports = {
         .send(err.message || "Something went wrong...");
        }
 },
+//logIn API................................................................
     logIn: async (req,res)=>{
         try {
             const { email,password } = req.body;

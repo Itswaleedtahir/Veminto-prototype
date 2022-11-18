@@ -1,61 +1,228 @@
 "use strict";
-const moment = require("moment");
-
-module.exports = (sequelize, DataTypes) => {
-  const Company = sequelize.define("companies", {
-    id: {
+module.exports = (sequelize, DataTypes) =>{
+  const Company = sequelize.define("company_data", {
+    the_key: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      companyName: {
+      timestamp:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull:true
       },
-      industry: {
+      reklamer:{
         type: DataTypes.STRING,
-        allowNull: false,
-        
+        allowNull:true
       },
-      service:{
+      adresseid:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull:true
       },
-      keywords: {
+      adgangsadresseid:{
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull:true
       },
-      numberOfEmployees: {
+      Firmanavn:{
+        type: DataTypes.BLOB,
+        allowNull:true,
+        get(){
+          return this.getDataValue('Firmanavn').toString('utf8');
+        }
+      },
+      cvr_nr:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull:true
       },
-     websiteUrl: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      antalPenheder:{
+        type: DataTypes.STRING,
+        allowNull:true
       },
-      createdAt: {
+      ansatte:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull:true
       },
-      updatedAt: {
+      ansatte_interval:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      ansatte_date:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      vejkode:{
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull:true
       },
+      vejnavn:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      husnr:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      bogstav:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      etage:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      door:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      postnr:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      postnrnavn:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      kommunenavn:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      kommunekode:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      region:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      telefonnummer:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      email:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      virksomhedsform:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      virksomhedsform_type:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      virksomhedsformkode:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      branchekode_primær:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      branchebetegnelse_primær:{
+        type: DataTypes.BLOB,
+        allowNull:true,
+        get(){
+          return this.getDataValue('branchebetegnelse_primær').toString('utf8');
+        }
+      },
+      branche_group:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      branchekode1:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      branchebetegnelse1:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      branchekode2:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      branchebetegnelse2:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      branchekode3:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      branchebetegnelse3:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      last_update:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      x:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      y:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      x:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      longitude:{
+        type: DataTypes.INTEGER,
+        allowNull:true
+      },
+      latitude:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      sammenstatus:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      stiftelsesDato:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      hjemmeside:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      yearly_report_start:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      yearly_report_end:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      yearly_result:{
+        type: DataTypes.STRING,
+        allowNull:true
+      },
+      scrapped:{
+        type: DataTypes.STRING,
+        allowNull:true
+      }
+  },{
+    timestamps: false
   });
-
-  Company.associate = (models) => {
-    Company.hasMany(models.Employees, {
-      as: "employees",
-      foreignKey: "fk_company_id",
-      targetKey: "id",
-    });
-    Company.hasMany(models.Services, {
-      as: "services",
-      foreignKey: "companiesId",
-      targetKey: "id",
-    });
+  return Company;
 }
+
+//   Company.associate = (models) => {
+//     Company.hasMany(models.Employees, {
+//       as: "employees",
+//       foreignKey: "fk_company_id",
+//       targetKey: "id",
+//     });
+//     Company.hasMany(models.Services, {
+//       as: "services",
+//       foreignKey: "companiesId",
+//       targetKey: "id",
+//     });
+// }
 // Company.associate = (models) => {
 //   //console.log(`models: ${models}`);
 //   Company.hasMany(models.Services, {
@@ -65,13 +232,6 @@ module.exports = (sequelize, DataTypes) => {
 //   });
 // }
 
-  Company.beforeCreate(async (user) => {
-    user.dataValues.createdAt = moment().unix();
-    user.dataValues.updatedAt = moment().unix();
-  });
-  Company.beforeUpdate(async (user) => {
-    user.dataValues.updatedAt = moment().unix();
-  });
 
-  return Company;
-};
+
+
