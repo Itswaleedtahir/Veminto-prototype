@@ -1,0 +1,9 @@
+{
+  "port": 3000,
+  "db": {
+    "username": "admin",
+    "password": "Vimento123456",
+    "name": "vimento",
+    "host": "vimentomain.cbfte2i14par.eu-west-1.rds.amazonaws.com"
+  }
+}

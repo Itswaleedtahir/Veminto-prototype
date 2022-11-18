@@ -103,8 +103,8 @@ dist
 
 # TernJS port file
 .tern-port
-config/environments/development.json
-config/environments/test.json
+
+
 
 .idea/
 client/.DS_Store
