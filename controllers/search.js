@@ -6,9 +6,10 @@ module.exports =  {
     data: async (req,res)=>{
         try {
             const { Firmanavn , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result } = req.body;
+            var whereClause = {};
             if(Firmanavn) {
                 const searchTerms = Firmanavn.split();     
-                const whereClause = {Firmanavn:{
+                whereClause = {Firmanavn:{
                     [Op.or]:[]
                 }};
 
