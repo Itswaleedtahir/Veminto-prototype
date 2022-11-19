@@ -135,7 +135,11 @@ module.exports = (sequelize, DataTypes) =>{
       },
       branchebetegnelse1:{
         type: DataTypes.STRING,
-        allowNull:true
+        allowNull:true,
+        get(){
+          return this.getDataValue('branchebetegnelse1').toString('utf8');
+        }
+        
       },
       branchekode2:{
         type: DataTypes.INTEGER,
@@ -187,7 +191,10 @@ module.exports = (sequelize, DataTypes) =>{
       },
       hjemmeside:{
         type: DataTypes.STRING,
-        allowNull:true
+        allowNull:true,
+        get(){
+          return this.getDataValue('hjemmeside').toString('utf8');
+        }
       },
       yearly_report_start:{
         type: DataTypes.STRING,
