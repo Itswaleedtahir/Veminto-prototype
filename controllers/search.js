@@ -6,19 +6,15 @@ module.exports =  {
     data: async (req,res)=>{
         try {
             const { Firmanavn , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result } = req.body;
-            var whereClause = {};
-            if(Firmanavn) {
-                const searchTerms = Firmanavn.split();     
-                whereClause = {Firmanavn:{
-                    [Op.or]:[]
-                }};
-
-                for( let searchTerm of searchTerms  ) {
-                    whereClause.Firmanavn[Op.or].push({
-                        [Op.like]: `%${searchTerm}%`
-                    })
-                }
-            }
+            const searchTerms = Firmanavn.split();     
+         const whereClause = {Firmanavn:{
+         [Op.or]:[]
+        }};
+      for( let searchTerm of searchTerms  ) {
+          whereClause.Firmanavn[Op.or].push({
+            [Op.like]: `%${searchTerm}%`
+            })
+        }
         
             const rq = { ...whereClause , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result }
             const OrCond = [];
