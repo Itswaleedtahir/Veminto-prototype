@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.BLOB,
         allowNull:true,
         get(){
-          return this.getDataValue('Firmanavn').toString('utf8');
+          return this.getDataValue('Firmanavn') ? this.getDataValue('Firmanavn').toString('utf8') : null;
         }
       },
       cvr_nr:{
