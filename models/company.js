@@ -215,21 +215,16 @@ module.exports = (sequelize, DataTypes) =>{
   },{
     timestamps: false
   });
+  Company.associate = (models) => {
+      Company.hasMany(models.AddressData, {
+        as: "address_data",
+        foreignKey: "fk_cvr_nr",
+        targetKey: "cvr_nr",
+      });
+  }
   return Company;
 }
 
-//   Company.associate = (models) => {
-//     Company.hasMany(models.Employees, {
-//       as: "employees",
-//       foreignKey: "fk_company_id",
-//       targetKey: "id",
-//     });
-//     Company.hasMany(models.Services, {
-//       as: "services",
-//       foreignKey: "companiesId",
-//       targetKey: "id",
-//     });
-// }
 // Company.associate = (models) => {
 //   //console.log(`models: ${models}`);
 //   Company.hasMany(models.Services, {

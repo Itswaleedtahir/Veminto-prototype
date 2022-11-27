@@ -1,11 +1,10 @@
-const { CompanyData } = require("../models/index")
+const { CompanyData, AddressData} = require("../models/index")
 const { Sequelize, Op } = require("sequelize");
-const { keyBy } = require("lodash");
 
 module.exports =  {
     data: async (req,res)=>{
         try {
-            const { Firmanavn , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result } = req.body;
+            const { Firmanavn , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result , } = req.body;
             const searchTerms = Firmanavn.split();     
          const whereClause = {Firmanavn:{
          [Op.or]:[]
@@ -41,6 +40,14 @@ module.exports =  {
         const comp = await CompanyData.findAll({
             where:{
                [Op.or]:[OrCond]
+        },
+        include: {
+            model: AddressData,
+            as: "address_data",
+            where: {
+
+            },
+            required: true
         }
         })
         res.status(200).send({'companies': comp});

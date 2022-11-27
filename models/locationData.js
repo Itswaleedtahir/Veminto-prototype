@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      cvr_nr:{
+      fk_cvr_nr:{
         type: DataTypes.INTEGER,
         allowNull:true
       },
@@ -92,29 +92,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull:true
       }      
   });
+  Address.associate = (models) => {
+    Address.belongsTo(models.CompanyData, {
+      as: "company_data",
+      foreignKey: "fk_cvr_nr",
+      targetKey: "cvr_nr",
+    });
+  }
   return Address;
 };
 
-//   Company.associate = (models) => {
-//     Company.hasMany(models.Employees, {
-//       as: "employees",
-//       foreignKey: "fk_company_id",
-//       targetKey: "id",
-//     });
-//     Company.hasMany(models.Services, {
-//       as: "services",
-//       foreignKey: "companiesId",
-//       targetKey: "id",
-//     });
-// }
-// Company.associate = (models) => {
-//   //console.log(`models: ${models}`);
-//   Company.hasMany(models.Services, {
-//     as: "services",
-//     foreignKey: "companiesId",
-//     targetKey: "id",
-//   });
-// }
 
 
 
