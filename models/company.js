@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.BLOB,
         allowNull:true,
         get(){
-          return this.getDataValue('Firmanavn').toString('utf8');
+          return this.getDataValue('Firmanavn')?.toString('utf8');
         }
       },
       cvr_nr:{
@@ -122,7 +122,7 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.BLOB,
         allowNull:true,
         get(){
-          return this.getDataValue('branchebetegnelse_primær').toString('utf8');
+          return this.getDataValue('branchebetegnelse_primær')?.toString('utf8');
         }
       },
       branche_group:{
@@ -137,7 +137,7 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.STRING,
         allowNull:true,
         get(){
-          return this.getDataValue('branchebetegnelse1').toString('utf8');
+          return this.getDataValue('branchebetegnelse1')?.toString('utf8');
         }
         
       },
@@ -193,7 +193,7 @@ module.exports = (sequelize, DataTypes) =>{
         type: DataTypes.STRING,
         allowNull:true,
         get(){
-          return this.getDataValue('hjemmeside').toString('utf8');
+          return this.getDataValue('hjemmeside')?.toString('utf8');
         }
       },
       yearly_report_start:{

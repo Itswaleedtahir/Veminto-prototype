@@ -5,16 +5,18 @@ module.exports =  {
     data: async (req,res)=>{
         try {
             const { Firmanavn , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result , } = req.body;
-            const searchTerms = Firmanavn.split();     
-         const whereClause = {Firmanavn:{
-         [Op.or]:[]
-        }};
+            const whereClause = {Firmanavn:{
+            [Op.or]:[]
+           }};
+            if(Firmanavn){
+                const searchTerms = Firmanavn.split();     
       for( let searchTerm of searchTerms  ) {
           whereClause.Firmanavn[Op.or].push({
             [Op.like]: `%${searchTerm}%`
             })
         }
         
+            }
             const rq = { ...whereClause , virksomhedsform ,branchebetegnelse_primær,ansatte, antalPenheder,yearly_result }
             const OrCond = [];
             for (var k in rq){
@@ -41,14 +43,14 @@ module.exports =  {
             where:{
                [Op.or]:[OrCond]
         },
-        include: {
-            model: AddressData,
-            as: "address_data",
-            where: {
+        // include: {
+        //     model: AddressData,
+        //     as: "address_data",
+        //     where: {
 
-            },
-            required: true
-        }
+        //     },
+        //     required: true
+        // }
         })
         res.status(200).send({'companies': comp});
     }catch (err) {

@@ -3,6 +3,6 @@ const router = Router();
 
 const data = require('../controllers/search.js');
 
-router.get('/companydata', data.data);
+router.post('/companydata', data.data);
 
 module.exports = router;
