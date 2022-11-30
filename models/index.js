@@ -10,11 +10,11 @@ const db = {};
 
 
 let sequelize = new Sequelize(
-  'vimento',
- 'admin',
- 'Vimento123456',
+  'veminto',
+ 'root',
+ '',
   {
-    host: 'vimentomain.cbfte2i14par.eu-west-1.rds.amazonaws.com',
+    host: 'localhost',
     dialect: "mysql",
   }
 );

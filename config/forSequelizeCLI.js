@@ -8,8 +8,8 @@ module.exports = {
   // host: config.get("db.host"),
 
 
-  "username": "admin",
-  "password": "Vimento123456",
-  "database": "vimento",
-  "host": "vimentomain.cbfte2i14par.eu-west-1.rds.amazonaws.com"
+  "username": "root",
+  "password": "",
+  "name": "vimento",
+  "host": "localhost"
 };
