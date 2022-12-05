@@ -3,7 +3,7 @@
   "db": {
     "username": "root",
     "password": "",
-    "name": "veminto",
+    "name": "vemintotest",
     "host": "localhost"
   }
 }

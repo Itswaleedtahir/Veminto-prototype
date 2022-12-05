@@ -100,11 +100,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "cp_cvr_nr",
       targetKey: "cvr_nr",
     });
-    // Address.hasMany(models.CompanyData, {
-    //   as: "company_Data",
-    //   foreignKey: "cvr_nr",
-    //   targetKey: "cp_cvr_nr",
-    // });
+    //  Address.hasMany(models.CompanyData,{
+    //    as:"company_data",
+    //    foreignKey: "cvr_nr",
+    //    sourcekey: "cp_cvr_nr",
+    //  })
   }
   return Address;
 };

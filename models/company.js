@@ -221,12 +221,14 @@ module.exports = (sequelize, DataTypes) =>{
         foreignKey: "cp_cvr_nr",
         sourceKey: "cvr_nr",
       });
-      // Company.belongsTo(models.AddressData, {
-      //   as: "address_data",
-      //   foreignKey: "cvr_nr",
-      //   sourceKey: "cp_cvr_nr",
-      // });
-  }
+
+        //   Company.belongsTo(models.AddressData, {
+        //     as: "address_data",
+        //     foreignKey: "cvr_nr",
+        //     targetkey: "cp_cvr_nr",
+        // })
+    }
+  
   return Company;
 }
 

@@ -10,7 +10,7 @@ const db = {};
 
 
 let sequelize = new Sequelize(
-  'veminto',
+  'vemintotest',
  'root',
  '',
   {
